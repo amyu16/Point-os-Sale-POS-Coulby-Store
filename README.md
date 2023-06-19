@@ -1,4 +1,4 @@
-# end
+# POS Point of Sale Coulby Store
 
 A new Flutter project.
 
