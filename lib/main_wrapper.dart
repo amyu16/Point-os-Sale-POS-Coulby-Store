@@ -1,6 +1,7 @@
 import 'package:end/controller/main_warapper_controller.dart';
 import 'package:end/pages/add_product_page.dart';
 import 'package:end/pages/cart_page.dart';
+import 'package:end/pages/order_page.dart';
 import 'package:end/pages/product_list_page.dart';
 import 'package:flutter/material.dart';
 import 'package:end/pages/report_page.dart';
@@ -100,56 +101,49 @@ class MainWrapper extends StatelessWidget {
             controller: controller.pageController,
             physics: const BouncingScrollPhysics(),
             children: [
-              ProductListPage(),
+              OrderPage(),
               AddProductPage(),
               ReportPage(),
             ],
           ),
-          Positioned(
-            left: 20,
-            right: 20,
-            bottom: 20,
-            child: SafeArea(
-              child: Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 70, vertical: 15),
-                margin: const EdgeInsets.symmetric(horizontal: 20),
-                decoration: const BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                      offset: Offset(0, -2),
-                      color: Color.fromRGBO(132, 181, 255, 0.3),
-                      blurRadius: 30,
-                    )
-                  ],
-                  color: Color.fromARGB(255, 255, 255, 255),
-                  borderRadius: BorderRadius.all(Radius.circular(15)),
-                ),
-                child: Obx(
-                  () => Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      _bottomAppBarItem(
-                        context,
-                        icon: IconlyBold.buy,
-                        inactiveIcon: IconlyBroken.buy,
-                        page: 0,
-                      ),
-                      _bottomAppBarItem(
-                        context,
-                        icon: IconlyBold.category,
-                        inactiveIcon: IconlyBroken.category,
-                        page: 1,
-                      ),
-                      _bottomAppBarItem(
-                        context,
-                        icon: IconlyBold.chart,
-                        inactiveIcon: IconlyBroken.chart,
-                        page: 2,
-                      ),
-                    ],
+          Container(
+            padding:
+                const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+            margin: const EdgeInsets.only(left: 15),
+            decoration: const BoxDecoration(
+              boxShadow: [
+                BoxShadow(
+                  offset: Offset(0, -2),
+                  color: Color.fromRGBO(132, 181, 255, 0.3),
+                  blurRadius: 30,
+                )
+              ],
+              color: Color.fromARGB(255, 255, 255, 255),
+              borderRadius: BorderRadius.all(Radius.circular(15)),
+            ),
+            child: Obx(
+              () => Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  _bottomAppBarItem(
+                    context,
+                    icon: IconlyBold.buy,
+                    inactiveIcon: IconlyBroken.buy,
+                    page: 0,
                   ),
-                ),
+                  _bottomAppBarItem(
+                    context,
+                    icon: IconlyBold.category,
+                    inactiveIcon: IconlyBroken.category,
+                    page: 1,
+                  ),
+                  _bottomAppBarItem(
+                    context,
+                    icon: IconlyBold.chart,
+                    inactiveIcon: IconlyBroken.chart,
+                    page: 2,
+                  ),
+                ],
               ),
             ),
           ),
