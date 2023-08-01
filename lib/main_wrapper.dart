@@ -95,6 +95,7 @@ class MainWrapper extends StatelessWidget {
         ),
       ),
       body: Stack(
+        alignment: Alignment.centerLeft,
         children: [
           PageView(
             onPageChanged: controller.animateToTab,
@@ -106,44 +107,51 @@ class MainWrapper extends StatelessWidget {
               ReportPage(),
             ],
           ),
-          Container(
-            padding:
-                const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
-            margin: const EdgeInsets.only(left: 15),
-            decoration: const BoxDecoration(
-              boxShadow: [
-                BoxShadow(
-                  offset: Offset(0, -2),
-                  color: Color.fromRGBO(132, 181, 255, 0.3),
-                  blurRadius: 30,
-                )
-              ],
-              color: Color.fromARGB(255, 255, 255, 255),
-              borderRadius: BorderRadius.all(Radius.circular(15)),
-            ),
-            child: Obx(
-              () => Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  _bottomAppBarItem(
-                    context,
-                    icon: IconlyBold.buy,
-                    inactiveIcon: IconlyBroken.buy,
-                    page: 0,
-                  ),
-                  _bottomAppBarItem(
-                    context,
-                    icon: IconlyBold.category,
-                    inactiveIcon: IconlyBroken.category,
-                    page: 1,
-                  ),
-                  _bottomAppBarItem(
-                    context,
-                    icon: IconlyBold.chart,
-                    inactiveIcon: IconlyBroken.chart,
-                    page: 2,
-                  ),
+          Padding(
+            padding: const EdgeInsets.only(top: 20, bottom: 20),
+            child: Container(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 12,
+              ),
+              margin: const EdgeInsets.only(left: 15),
+              decoration: const BoxDecoration(
+                boxShadow: [
+                  BoxShadow(
+                    offset: Offset(0, -2),
+                    color: Color.fromRGBO(132, 181, 255, 0.3),
+                    blurRadius: 30,
+                  )
                 ],
+                color: Color.fromARGB(255, 255, 255, 255),
+                borderRadius: BorderRadius.all(Radius.circular(15)),
+              ),
+              child: Obx(
+                () => Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    _bottomAppBarItem(context,
+                        icon: IconlyBold.buy,
+                        inactiveIcon: IconlyBroken.buy,
+                        page: 0,
+                        text: 'Order'),
+                    SizedBox(
+                      height: 40,
+                    ),
+                    _bottomAppBarItem(context,
+                        icon: IconlyBold.category,
+                        inactiveIcon: IconlyBroken.category,
+                        page: 1,
+                        text: 'Product'),
+                    SizedBox(
+                      height: 40,
+                    ),
+                    _bottomAppBarItem(context,
+                        icon: IconlyBold.chart,
+                        inactiveIcon: IconlyBroken.chart,
+                        page: 2,
+                        text: 'Report'),
+                  ],
+                ),
               ),
             ),
           ),
@@ -157,6 +165,7 @@ class MainWrapper extends StatelessWidget {
     required IconData icon,
     required IconData inactiveIcon,
     required int page,
+    required String text,
   }) {
     return ZoomTapAnimation(
       onTap: () => controller.goToTab(page),
@@ -171,6 +180,18 @@ class MainWrapper extends StatelessWidget {
                   : const Color.fromRGBO(143, 162, 193, 1),
               size: 30,
             ),
+            SizedBox(
+              height: 5,
+            ),
+            Text(
+              text,
+              style: TextStyle(
+                fontSize: 13,
+                color: controller.currentPage.value == page
+                    ? const Color.fromRGBO(52, 127, 235, 1)
+                    : const Color.fromRGBO(143, 162, 193, 1),
+              ),
+            )
           ],
         ),
       ),
