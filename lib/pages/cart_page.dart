@@ -232,280 +232,310 @@ class _CartPageState extends State<CartPage> {
     final cartProvider = Provider.of<CartProvider>(context);
 
     return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        toolbarHeight: 80,
-        leading: IconButton(
-          icon: Icon(color: Color.fromRGBO(0, 42, 110, 1), Icons.arrow_back),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-        backgroundColor: Colors.white,
-        title: Text(
-            style: TextStyle(
-                color: Color.fromRGBO(0, 42, 110, 1),
-                fontWeight: FontWeight.bold,
-                fontSize: 24),
-            'Cart'),
-        elevation: 0,
-      ),
-      body: Column(
-        children: [
-          Expanded(
-            child: FutureBuilder<List<Cart>>(
-              future: dbHelper?.getCartItems(),
-              builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  final cartItems = snapshot.data!;
-                  final bool hasItems = cartItems.isNotEmpty;
+      // appBar: AppBar(
+      //   toolbarHeight: 80,
+      //   leading: IconButton(
+      //     icon: Icon(color: Color.fromRGBO(0, 42, 110, 1), Icons.arrow_back),
+      //     onPressed: () {
+      //       Navigator.pop(context);
+      //     },
+      //   ),
+      //   backgroundColor: Colors.white,
+      //   title: Text(
+      //       style: TextStyle(
+      //           color: Color.fromRGBO(0, 42, 110, 1),
+      //           fontWeight: FontWeight.bold,
+      //           fontSize: 24),
+      //       'Cart'),
+      //   elevation: 0,
+      // ),
+      body: Padding(
+        padding: const EdgeInsets.only(top: 20, bottom: 20),
+        child: Container(
+          margin: const EdgeInsets.only(right: 20),
+          decoration: const BoxDecoration(
+            boxShadow: [
+              BoxShadow(
+                offset: Offset(0, -2),
+                color: Color.fromRGBO(132, 181, 255, 0.3),
+                blurRadius: 30,
+              )
+            ],
+            color: Color.fromARGB(255, 255, 255, 255),
+            borderRadius: BorderRadius.all(Radius.circular(30)),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(top: 50, left: 40, bottom: 20),
+                child: Text(
+                    style: TextStyle(
+                        color: Color.fromRGBO(0, 42, 110, 1),
+                        fontWeight: FontWeight.bold,
+                        fontSize: 30),
+                    'Cart'),
+              ),
+              Expanded(
+                child: FutureBuilder<List<Cart>>(
+                  future: dbHelper?.getCartItems(),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      final cartItems = snapshot.data!;
+                      final bool hasItems = cartItems.isNotEmpty;
 
-                  return ListView.builder(
-                    itemCount: cartItems.length + 1,
-                    itemBuilder: (context, index) {
-                      if (index == cartItems.length) {
-                        return ListTile();
-                      }
+                      return ListView.builder(
+                        itemCount: cartItems.length + 1,
+                        itemBuilder: (context, index) {
+                          if (index == cartItems.length) {
+                            return ListTile();
+                          }
 
-                      Cart item = cartItems[index];
+                          Cart item = cartItems[index];
 
-                      return Padding(
-                        padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
-                        child: Card(
-                          elevation: 0,
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Row(
-                              children: [
-                                Container(
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(9),
-                                      color: Color.fromRGBO(52, 127, 235, 1)),
-                                  alignment: Alignment.center,
-                                  height: 50,
-                                  width: 50,
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(10),
-                                    child: Text(
-                                      (index + 1).toString(),
-                                      style: const TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 24,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                const SizedBox(
-                                  width: 30,
-                                ),
-                                Expanded(
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        item.productName.toString(),
-                                        style: TextStyle(
-                                            color:
-                                                Color.fromRGBO(0, 42, 110, 1),
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.w700),
-                                      ),
-                                      SizedBox(
-                                        height: 10,
-                                      ),
-                                      Text(
-                                        "Rp. ${item.productPrice} /${item.unitTag}",
-                                        style: TextStyle(
-                                            color: Color.fromRGBO(
-                                                117, 140, 177, 1),
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w500),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.end,
+                          return Padding(
+                            padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+                            child: Card(
+                              elevation: 0,
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Row(
                                   children: [
-                                    IconButton(
-                                      onPressed: () {
-                                        _removeCartItem(item, cartProvider);
-                                      },
-                                      icon: Icon(
+                                    Container(
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(9),
                                           color:
-                                              Color.fromRGBO(255, 118, 118, 1),
-                                          Icons.delete),
+                                              Color.fromRGBO(52, 127, 235, 1)),
+                                      alignment: Alignment.center,
+                                      height: 50,
+                                      width: 50,
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(10),
+                                        child: Text(
+                                          (index + 1).toString(),
+                                          style: const TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 24,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
                                     ),
-                                    SizedBox(
-                                      height: 10,
+                                    const SizedBox(
+                                      width: 30,
                                     ),
-                                    Row(
+                                    Expanded(
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            item.productName.toString(),
+                                            style: TextStyle(
+                                                color: Color.fromRGBO(
+                                                    0, 42, 110, 1),
+                                                fontSize: 20,
+                                                fontWeight: FontWeight.w700),
+                                          ),
+                                          SizedBox(
+                                            height: 10,
+                                          ),
+                                          Text(
+                                            "Rp. ${item.productPrice} /${item.unitTag}",
+                                            style: TextStyle(
+                                                color: Color.fromRGBO(
+                                                    117, 140, 177, 1),
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w500),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.end,
                                       children: [
-                                        Container(
-                                          alignment: Alignment.center,
-                                          height: 35,
-                                          width: 35,
-                                          decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(5),
+                                        IconButton(
+                                          onPressed: () {
+                                            _removeCartItem(item, cartProvider);
+                                          },
+                                          icon: Icon(
                                               color: Color.fromRGBO(
-                                                  210, 228, 255, 1)),
-                                          child: IconButton(
-                                            onPressed: () {
-                                              _decrementQuantity(
-                                                  item, cartProvider);
-                                            },
-                                            icon: const Icon(
-                                                color: Color.fromRGBO(
-                                                    52, 127, 235, 1),
-                                                size: 20,
-                                                Icons.remove),
-                                          ),
+                                                  255, 118, 118, 1),
+                                              Icons.delete),
                                         ),
                                         SizedBox(
-                                          width: 12,
+                                          height: 10,
                                         ),
-                                        Text(
-                                          item.quantity.toString(),
-                                          style: TextStyle(
-                                            color:
-                                                Color.fromRGBO(0, 42, 110, 1),
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          width: 12,
-                                        ),
-                                        Container(
-                                          alignment: Alignment.center,
-                                          height: 35,
-                                          width: 35,
-                                          decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(5),
-                                              color: Color.fromRGBO(
-                                                  210, 228, 255, 1)),
-                                          child: IconButton(
-                                            onPressed: () {
-                                              _incrementQuantity(
-                                                  item, cartProvider);
-                                            },
-                                            icon: const Icon(
+                                        Row(
+                                          children: [
+                                            Container(
+                                              alignment: Alignment.center,
+                                              height: 35,
+                                              width: 35,
+                                              decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(5),
+                                                  color: Color.fromRGBO(
+                                                      210, 228, 255, 1)),
+                                              child: IconButton(
+                                                onPressed: () {
+                                                  _decrementQuantity(
+                                                      item, cartProvider);
+                                                },
+                                                icon: const Icon(
+                                                    color: Color.fromRGBO(
+                                                        52, 127, 235, 1),
+                                                    size: 20,
+                                                    Icons.remove),
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              width: 12,
+                                            ),
+                                            Text(
+                                              item.quantity.toString(),
+                                              style: TextStyle(
                                                 color: Color.fromRGBO(
-                                                    52, 127, 235, 1),
-                                                size: 20,
-                                                Icons.add),
-                                          ),
+                                                    0, 42, 110, 1),
+                                                fontSize: 20,
+                                                fontWeight: FontWeight.w600,
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              width: 12,
+                                            ),
+                                            Container(
+                                              alignment: Alignment.center,
+                                              height: 35,
+                                              width: 35,
+                                              decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(5),
+                                                  color: Color.fromRGBO(
+                                                      210, 228, 255, 1)),
+                                              child: IconButton(
+                                                onPressed: () {
+                                                  _incrementQuantity(
+                                                      item, cartProvider);
+                                                },
+                                                icon: const Icon(
+                                                    color: Color.fromRGBO(
+                                                        52, 127, 235, 1),
+                                                    size: 20,
+                                                    Icons.add),
+                                              ),
+                                            ),
+                                          ],
                                         ),
                                       ],
                                     ),
                                   ],
                                 ),
-                              ],
+                              ),
                             ),
-                          ),
-                        ),
+                          );
+                        },
                       );
-                    },
-                  );
-                } else if (snapshot.hasError) {
-                  return Text('Error: ${snapshot.error}');
-                } else {
-                  return const Center(child: CircularProgressIndicator());
-                }
-              },
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
-            child: Container(
-              padding: const EdgeInsets.all(16),
-              child: Column(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(bottom: 30),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Text(
-                          'Subtotal:',
-                          style: TextStyle(
-                            fontSize: 24,
-                            fontWeight: FontWeight.bold,
-                            color: Color.fromRGBO(0, 42, 110, 1),
-                          ),
-                        ),
-                        Text(
-                          'Rp. ${cartProvider.getTotalPrice().toStringAsFixed(0)}K',
-                          style: const TextStyle(
-                            fontSize: 24,
-                            fontWeight: FontWeight.bold,
-                            color: Color.fromRGBO(0, 42, 110, 1),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 30),
-                    child: SvgPicture.asset(assetName,
-                        semanticsLabel: 'A red up arrow'),
-                  ),
-                  if (change > 0)
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 30.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const Text(
-                            'Change:',
-                            style: TextStyle(
-                              color: Color.fromRGBO(117, 140, 177, 1),
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          Text(
-                            'RP ${change.toStringAsFixed(2)}',
-                            style: const TextStyle(
-                              color: Color.fromRGBO(117, 140, 177, 1),
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ElevatedButton(
-                    onPressed: () {
-                      double totalPrice = cartProvider.getTotalPrice();
-                      if (totalPrice > 0) {
-                        _checkout(totalPrice, cartProvider);
-                      }
-                    },
-                    style: ElevatedButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(
-                            8), // Ubah nilai sesuai dengan tingkat kebulatan yang Anda inginkan
-                      ),
-                      fixedSize: Size(500, 50),
-                      backgroundColor: Color.fromRGBO(52, 127, 235, 1),
-                    ),
-                    child: const Text(
-                      'Checkout',
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
-                    ),
-                  ),
-                ],
+                    } else if (snapshot.hasError) {
+                      return Text('Error: ${snapshot.error}');
+                    } else {
+                      return const Center(child: CircularProgressIndicator());
+                    }
+                  },
+                ),
               ),
-            ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+                child: Container(
+                  padding: const EdgeInsets.all(16),
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.only(bottom: 30),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const Text(
+                              'Subtotal:',
+                              style: TextStyle(
+                                fontSize: 24,
+                                fontWeight: FontWeight.bold,
+                                color: Color.fromRGBO(0, 42, 110, 1),
+                              ),
+                            ),
+                            Text(
+                              'Rp. ${cartProvider.getTotalPrice().toStringAsFixed(0)}K',
+                              style: const TextStyle(
+                                fontSize: 24,
+                                fontWeight: FontWeight.bold,
+                                color: Color.fromRGBO(0, 42, 110, 1),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 30),
+                        child: SvgPicture.asset(assetName,
+                            semanticsLabel: 'A red up arrow'),
+                      ),
+                      if (change > 0)
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 30.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              const Text(
+                                'Change:',
+                                style: TextStyle(
+                                  color: Color.fromRGBO(117, 140, 177, 1),
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              Text(
+                                'RP ${change.toStringAsFixed(2)}',
+                                style: const TextStyle(
+                                  color: Color.fromRGBO(117, 140, 177, 1),
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ElevatedButton(
+                        onPressed: () {
+                          double totalPrice = cartProvider.getTotalPrice();
+                          if (totalPrice > 0) {
+                            _checkout(totalPrice, cartProvider);
+                          }
+                        },
+                        style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(
+                                8), // Ubah nilai sesuai dengan tingkat kebulatan yang Anda inginkan
+                          ),
+                          fixedSize: Size(500, 50),
+                          backgroundColor: Color.fromRGBO(52, 127, 235, 1),
+                        ),
+                        child: const Text(
+                          'Checkout',
+                          style: TextStyle(
+                              fontSize: 20, fontWeight: FontWeight.w600),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }

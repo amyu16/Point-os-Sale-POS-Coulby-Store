@@ -113,7 +113,7 @@ class MainWrapper extends StatelessWidget {
               padding: const EdgeInsets.symmetric(
                 horizontal: 12,
               ),
-              margin: const EdgeInsets.only(left: 15),
+              margin: const EdgeInsets.only(left: 20),
               decoration: const BoxDecoration(
                 boxShadow: [
                   BoxShadow(
@@ -123,7 +123,7 @@ class MainWrapper extends StatelessWidget {
                   )
                 ],
                 color: Color.fromARGB(255, 255, 255, 255),
-                borderRadius: BorderRadius.all(Radius.circular(15)),
+                borderRadius: BorderRadius.all(Radius.circular(20)),
               ),
               child: Obx(
                 () => Column(

@@ -100,7 +100,7 @@ class _ProductListPageState extends State<ProductListPage> {
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding: const EdgeInsets.all(20.0),
               child: Container(
                 decoration: BoxDecoration(
                   color: Colors.white,
