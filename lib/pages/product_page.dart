@@ -3,8 +3,8 @@ import 'package:end/widgets/cart.dart';
 import 'package:end/widgets/product_list.dart';
 import 'package:flutter/material.dart';
 
-class OrderPage extends StatelessWidget {
-  const OrderPage({super.key});
+class ProductPage extends StatelessWidget {
+  const ProductPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +12,7 @@ class OrderPage extends StatelessWidget {
       body: Row(
         children: [
           Expanded(flex: 2, child: ProductListPage()),
-          Expanded(flex: 1, child: CartPage()),
+          Expanded(flex: 1, child: AddProductPage()),
         ],
       ),
     );

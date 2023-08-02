@@ -1,5 +1,5 @@
 import 'package:end/helpers/db_helper.dart';
-import 'package:end/pages/product_list_page.dart';
+import 'package:end/widgets/product_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -273,7 +273,7 @@ class _CartPageState extends State<CartPage> {
                     style: TextStyle(
                         color: Color.fromRGBO(0, 42, 110, 1),
                         fontWeight: FontWeight.bold,
-                        fontSize: 30),
+                        fontSize: 25),
                     'Cart'),
               ),
               Expanded(
@@ -294,65 +294,62 @@ class _CartPageState extends State<CartPage> {
                           Cart item = cartItems[index];
 
                           return Padding(
-                            padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+                            padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
                             child: Card(
                               elevation: 0,
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
                                     Container(
                                       decoration: BoxDecoration(
                                           borderRadius:
-                                              BorderRadius.circular(9),
+                                              BorderRadius.circular(5),
                                           color:
                                               Color.fromRGBO(52, 127, 235, 1)),
                                       alignment: Alignment.center,
-                                      height: 50,
-                                      width: 50,
+                                      height: 33,
+                                      width: 33,
                                       child: Padding(
-                                        padding: const EdgeInsets.all(10),
+                                        padding: const EdgeInsets.all(5),
                                         child: Text(
                                           (index + 1).toString(),
                                           style: const TextStyle(
                                             color: Colors.white,
-                                            fontSize: 24,
+                                            fontSize: 15,
                                             fontWeight: FontWeight.bold,
                                           ),
                                         ),
                                       ),
                                     ),
-                                    const SizedBox(
-                                      width: 30,
-                                    ),
-                                    Expanded(
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            item.productName.toString(),
-                                            style: TextStyle(
-                                                color: Color.fromRGBO(
-                                                    0, 42, 110, 1),
-                                                fontSize: 20,
-                                                fontWeight: FontWeight.w700),
-                                          ),
-                                          SizedBox(
-                                            height: 10,
-                                          ),
-                                          Text(
-                                            "Rp. ${item.productPrice} /${item.unitTag}",
-                                            style: TextStyle(
-                                                color: Color.fromRGBO(
-                                                    117, 140, 177, 1),
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.w500),
-                                          ),
-                                        ],
-                                      ),
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          item.productName.toString(),
+                                          style: TextStyle(
+                                              color:
+                                                  Color.fromRGBO(0, 42, 110, 1),
+                                              fontSize: 18,
+                                              fontWeight: FontWeight.w700),
+                                        ),
+                                        SizedBox(
+                                          height: 10,
+                                        ),
+                                        Text(
+                                          "${item.productPrice}K/${item.unitTag}",
+                                          style: TextStyle(
+                                              color: Color.fromRGBO(
+                                                  117, 140, 177, 1),
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.w500),
+                                        ),
+                                      ],
                                     ),
                                     Column(
                                       crossAxisAlignment:
@@ -374,8 +371,8 @@ class _CartPageState extends State<CartPage> {
                                           children: [
                                             Container(
                                               alignment: Alignment.center,
-                                              height: 35,
-                                              width: 35,
+                                              height: 25,
+                                              width: 25,
                                               decoration: BoxDecoration(
                                                   borderRadius:
                                                       BorderRadius.circular(5),
@@ -389,7 +386,7 @@ class _CartPageState extends State<CartPage> {
                                                 icon: const Icon(
                                                     color: Color.fromRGBO(
                                                         52, 127, 235, 1),
-                                                    size: 20,
+                                                    size: 10,
                                                     Icons.remove),
                                               ),
                                             ),
@@ -401,7 +398,7 @@ class _CartPageState extends State<CartPage> {
                                               style: TextStyle(
                                                 color: Color.fromRGBO(
                                                     0, 42, 110, 1),
-                                                fontSize: 20,
+                                                fontSize: 15,
                                                 fontWeight: FontWeight.w600,
                                               ),
                                             ),
@@ -410,8 +407,8 @@ class _CartPageState extends State<CartPage> {
                                             ),
                                             Container(
                                               alignment: Alignment.center,
-                                              height: 35,
-                                              width: 35,
+                                              height: 25,
+                                              width: 25,
                                               decoration: BoxDecoration(
                                                   borderRadius:
                                                       BorderRadius.circular(5),
@@ -425,7 +422,7 @@ class _CartPageState extends State<CartPage> {
                                                 icon: const Icon(
                                                     color: Color.fromRGBO(
                                                         52, 127, 235, 1),
-                                                    size: 20,
+                                                    size: 10,
                                                     Icons.add),
                                               ),
                                             ),
@@ -462,7 +459,7 @@ class _CartPageState extends State<CartPage> {
                             const Text(
                               'Subtotal:',
                               style: TextStyle(
-                                fontSize: 24,
+                                fontSize: 20,
                                 fontWeight: FontWeight.bold,
                                 color: Color.fromRGBO(0, 42, 110, 1),
                               ),
@@ -470,7 +467,7 @@ class _CartPageState extends State<CartPage> {
                             Text(
                               'Rp. ${cartProvider.getTotalPrice().toStringAsFixed(0)}K',
                               style: const TextStyle(
-                                fontSize: 24,
+                                fontSize: 20,
                                 fontWeight: FontWeight.bold,
                                 color: Color.fromRGBO(0, 42, 110, 1),
                               ),

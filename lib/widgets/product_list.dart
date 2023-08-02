@@ -95,111 +95,113 @@ class _ProductListPageState extends State<ProductListPage> {
     final cart = Provider.of<CartProvider>(context);
     return Scaffold(
       backgroundColor: Color.fromRGBO(244, 246, 252, 1),
-      body: Padding(
-        padding: const EdgeInsets.only(left: 100),
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(11.0),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Color.fromRGBO(132, 181, 255, 0.3),
-                      spreadRadius: 2,
-                      blurRadius: 10,
-                      offset: Offset(0, 9),
-                    ),
-                  ],
-                ),
-                child: TextField(
-                  onChanged: (value) {
-                    setState(() {
-                      searchQuery = value.toLowerCase();
-                    });
-                  },
-                  decoration: InputDecoration(
-                    prefixIcon: Icon(
-                      IconlyBroken.search,
-                      color: Color.fromRGBO(143, 162, 193, 1),
-                    ),
-                    floatingLabelBehavior: FloatingLabelBehavior.never,
-                    labelText: 'Search',
-                    labelStyle: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        color: Color.fromRGBO(143, 162, 193, 1)),
-                    border: OutlineInputBorder(
-                      borderSide: BorderSide.none,
-                    ),
-                    contentPadding:
-                        const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(11.0),
+                boxShadow: [
+                  BoxShadow(
+                    color: Color.fromRGBO(132, 181, 255, 0.3),
+                    spreadRadius: 2,
+                    blurRadius: 10,
+                    offset: Offset(0, 9),
                   ),
-                ),
-              ),
-            ),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: [
-                  buildCategoryFilter('Soaps', soapsIco),
-                  buildCategoryFilter('Drinks', drinksIco),
-                  buildCategoryFilter('Kilos', kilosIco),
-                  buildCategoryFilter('Cigs', cigsIco),
-                  buildCategoryFilter('Noodles', noodlesIco),
-                  buildCategoryFilter('Snacks', snacksIco),
-                  buildCategoryFilter('Coffee', coffeeIco),
-                  buildCategoryFilter('Others', othersIco),
                 ],
               ),
-            ),
-            const SizedBox(height: 20.0),
-            Padding(
-              padding: const EdgeInsets.only(left: 20),
-              child: Container(
-                alignment: Alignment.centerLeft,
-                child: const Text(
-                  'Product List',
-                  style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Color.fromRGBO(0, 42, 110, 1)),
+              child: TextField(
+                onChanged: (value) {
+                  setState(() {
+                    searchQuery = value.toLowerCase();
+                  });
+                },
+                decoration: InputDecoration(
+                  prefixIcon: Icon(
+                    IconlyBroken.search,
+                    color: Color.fromRGBO(143, 162, 193, 1),
+                  ),
+                  floatingLabelBehavior: FloatingLabelBehavior.never,
+                  labelText: 'Search',
+                  labelStyle: TextStyle(
+                      fontWeight: FontWeight.w600,
+                      color: Color.fromRGBO(143, 162, 193, 1)),
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide.none,
+                  ),
+                  contentPadding:
+                      const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
                 ),
               ),
             ),
-            const SizedBox(height: 16.0),
-            Expanded(
-              child: FutureBuilder<List<Product>>(
-                future: dbHelper.getProducts(),
-                builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return const Center(child: CircularProgressIndicator());
-                  }
-                  if (snapshot.hasError) {
-                    return Center(child: Text('Error: ${snapshot.error}'));
-                  }
-                  final products = snapshot.data;
-                  if (products == null || products.isEmpty) {
-                    return const Center(child: Text('Produk belum ditambahkan'));
-                  }
-                  final filteredProducts = products.where((product) {
-                    final name = product.name?.toLowerCase() ?? '';
-                    final category = product.category?.toLowerCase() ?? '';
-                    return name.contains(searchQuery) &&
-                        (selectedCategory.isEmpty ||
-                            category == selectedCategory);
-                  }).toList();
-                  return GridView.builder(
+          ),
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: [
+                buildCategoryFilter('Soaps', soapsIco),
+                buildCategoryFilter('Drinks', drinksIco),
+                buildCategoryFilter('Kilos', kilosIco),
+                buildCategoryFilter('Cigs', cigsIco),
+                buildCategoryFilter('Noodles', noodlesIco),
+                buildCategoryFilter('Snacks', snacksIco),
+                buildCategoryFilter('Coffee', coffeeIco),
+                buildCategoryFilter('Others', othersIco),
+              ],
+            ),
+          ),
+          const SizedBox(height: 20.0),
+          Padding(
+            padding: const EdgeInsets.only(left: 20),
+            child: Container(
+              alignment: Alignment.centerLeft,
+              child: const Text(
+                'Product List',
+                style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Color.fromRGBO(0, 42, 110, 1)),
+              ),
+            ),
+          ),
+          const SizedBox(height: 16.0),
+          Expanded(
+            child: FutureBuilder<List<Product>>(
+              future: dbHelper.getProducts(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const Center(child: CircularProgressIndicator());
+                }
+                if (snapshot.hasError) {
+                  return Center(child: Text('Error: ${snapshot.error}'));
+                }
+                final products = snapshot.data;
+                if (products == null || products.isEmpty) {
+                  return const Center(child: Text('Produk belum ditambahkan'));
+                }
+                final filteredProducts = products.where((product) {
+                  final name = product.name?.toLowerCase() ?? '';
+                  final category = product.category?.toLowerCase() ?? '';
+                  return name.contains(searchQuery) &&
+                      (selectedCategory.isEmpty ||
+                          category == selectedCategory);
+                }).toList();
+                return Padding(
+                  padding: const EdgeInsets.only(left: 10, right: 10),
+                  child: GridView.builder(
                     physics: const BouncingScrollPhysics(),
                     itemCount: filteredProducts.length,
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 3,
                       childAspectRatio: 1,
                     ),
                     itemBuilder: (context, index) {
                       final product = filteredProducts[index];
-                      final isProductAdded = addedProductIds.contains(product.id);
+                      final isProductAdded =
+                          addedProductIds.contains(product.id);
                       final stockTextStyle = product.stock == 0
                           ? TextStyle(
                               color: Colors.red,
@@ -247,7 +249,8 @@ class _ProductListPageState extends State<ProductListPage> {
                                           Color.fromRGBO(252, 220, 220, 1),
                                       behavior: SnackBarBehavior.floating,
                                       shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(8)),
+                                          borderRadius:
+                                              BorderRadius.circular(8)),
                                       content: Text(
                                         'Produk sudah ada di Keranjang',
                                         style: TextStyle(
@@ -317,8 +320,8 @@ class _ProductListPageState extends State<ProductListPage> {
                                       ),
                                     );
                                     setState(() {
-                                      cart.addTotalPrice(
-                                          double.parse(product.price.toString()));
+                                      cart.addTotalPrice(double.parse(
+                                          product.price.toString()));
                                       cart.addCounter();
                                     });
                                   }
@@ -334,7 +337,8 @@ class _ProductListPageState extends State<ProductListPage> {
                                       padding: const EdgeInsets.only(bottom: 9),
                                       child: Container(
                                         decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(5),
+                                          borderRadius:
+                                              BorderRadius.circular(5),
                                           color: getColorByCategory(
                                               product.category),
                                         ),
@@ -370,7 +374,8 @@ class _ProductListPageState extends State<ProductListPage> {
                                     Padding(
                                       padding: const EdgeInsets.only(top: 17),
                                       child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.end,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.end,
                                         children: [
                                           Text(
                                             '${product.stock ?? ''} Items',
@@ -387,12 +392,12 @@ class _ProductListPageState extends State<ProductListPage> {
                         ),
                       );
                     },
-                  );
-                },
-              ),
+                  ),
+                );
+              },
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
