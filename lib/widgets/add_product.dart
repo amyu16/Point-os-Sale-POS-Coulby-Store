@@ -185,281 +185,283 @@ class _AddProductPageState extends State<AddProductPage>
             color: Color.fromARGB(255, 255, 255, 255),
             borderRadius: BorderRadius.all(Radius.circular(30)),
           ),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 50, left: 40, bottom: 20),
-                  child: Text(
-                      style: TextStyle(
-                          color: Color.fromRGBO(0, 42, 110, 1),
-                          fontWeight: FontWeight.bold,
-                          fontSize: 25),
-                      'Cart'),
-                ),
-                Padding(
-                  padding:
-                      const EdgeInsets.only(left: 25, right: 25, bottom: 40),
-                  child: Column(
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(11.0),
-                            boxShadow: [
-                              BoxShadow(
-                                  color: Color.fromRGBO(132, 181, 255, 0.3),
-                                  spreadRadius: 2,
-                                  blurRadius: 10,
-                                  offset: Offset(0, 9))
-                            ]),
-                        child: TextFormField(
-                          controller: _idController,
-                          decoration: InputDecoration(
-                            floatingLabelBehavior: FloatingLabelBehavior.never,
-                            prefixIcon: Transform.scale(
-                              child: SvgPicture.asset(
-                                barcodeIco,
-                                height: 5,
-                                color: Color.fromRGBO(143, 162, 193, 1),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(top: 50, left: 40, bottom: 20),
+                child: Text(
+                    style: TextStyle(
+                        color: Color.fromRGBO(0, 42, 110, 1),
+                        fontWeight: FontWeight.bold,
+                        fontSize: 25),
+                    'Cart'),
+              ),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: ListView(
+                      children: [
+                        Container(
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(11.0),
+                              boxShadow: [
+                                BoxShadow(
+                                    color: Color.fromRGBO(132, 181, 255, 0.3),
+                                    spreadRadius: 2,
+                                    blurRadius: 10,
+                                    offset: Offset(0, 9))
+                              ]),
+                          child: TextFormField(
+                            controller: _idController,
+                            decoration: InputDecoration(
+                              floatingLabelBehavior: FloatingLabelBehavior.never,
+                              prefixIcon: Transform.scale(
+                                child: SvgPicture.asset(
+                                  barcodeIco,
+                                  height: 5,
+                                  color: Color.fromRGBO(143, 162, 193, 1),
+                                ),
+                                scale: 0.4,
                               ),
-                              scale: 0.4,
-                            ),
-                            labelText: 'Product ID',
-                            labelStyle: TextStyle(
-                                color: Color.fromRGBO(143, 162, 193, 1),
-                                fontWeight: FontWeight.w500),
-                            border:
-                                OutlineInputBorder(borderSide: BorderSide.none),
-                            contentPadding: EdgeInsets.symmetric(
-                              vertical: 12.0,
-                              horizontal: 16.0,
-                            ),
-                          ),
-                          keyboardType: TextInputType.number,
-                        ),
-                      ),
-                      const SizedBox(height: 16.0),
-                      Container(
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(11.0),
-                            boxShadow: [
-                              BoxShadow(
-                                  color: Color.fromRGBO(132, 181, 255, 0.3),
-                                  spreadRadius: 2,
-                                  blurRadius: 10,
-                                  offset: Offset(0, 9))
-                            ]),
-                        child: TextFormField(
-                          controller: _nameController,
-                          decoration: InputDecoration(
-                            floatingLabelBehavior: FloatingLabelBehavior.never,
-                            prefixIcon: Transform.scale(
-                              child: SvgPicture.asset(
-                                cubeIco,
-                                height: 5,
-                                color: Color.fromRGBO(143, 162, 193, 1),
+                              labelText: 'Product ID',
+                              labelStyle: TextStyle(
+                                  color: Color.fromRGBO(143, 162, 193, 1),
+                                  fontWeight: FontWeight.w500),
+                              border:
+                                  OutlineInputBorder(borderSide: BorderSide.none),
+                              contentPadding: EdgeInsets.symmetric(
+                                vertical: 12.0,
+                                horizontal: 16.0,
                               ),
-                              scale: 0.4,
                             ),
-                            labelText: 'Product Name',
-                            labelStyle: TextStyle(
-                                color: Color.fromRGBO(143, 162, 193, 1),
-                                fontWeight: FontWeight.w500),
-                            border:
-                                OutlineInputBorder(borderSide: BorderSide.none),
-                            contentPadding: EdgeInsets.symmetric(
-                              vertical: 12.0,
-                              horizontal: 16.0,
-                            ),
+                            keyboardType: TextInputType.number,
                           ),
                         ),
-                      ),
-                      const SizedBox(height: 16.0),
-                      Container(
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(11.0),
-                            boxShadow: [
-                              BoxShadow(
-                                  color: Color.fromRGBO(132, 181, 255, 0.3),
-                                  spreadRadius: 2,
-                                  blurRadius: 10,
-                                  offset: Offset(0, 9))
-                            ]),
-                        child: TextFormField(
-                          controller: _stockController,
-                          decoration: InputDecoration(
-                            prefixIcon: Transform.scale(
-                              child: SvgPicture.asset(
-                                cubesIco,
-                                height: 5,
-                                color: Color.fromRGBO(143, 162, 193, 1),
+                        const SizedBox(height: 16.0),
+                        Container(
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(11.0),
+                              boxShadow: [
+                                BoxShadow(
+                                    color: Color.fromRGBO(132, 181, 255, 0.3),
+                                    spreadRadius: 2,
+                                    blurRadius: 10,
+                                    offset: Offset(0, 9))
+                              ]),
+                          child: TextFormField(
+                            controller: _nameController,
+                            decoration: InputDecoration(
+                              floatingLabelBehavior: FloatingLabelBehavior.never,
+                              prefixIcon: Transform.scale(
+                                child: SvgPicture.asset(
+                                  cubeIco,
+                                  height: 5,
+                                  color: Color.fromRGBO(143, 162, 193, 1),
+                                ),
+                                scale: 0.4,
                               ),
-                              scale: 0.4,
-                            ),
-                            floatingLabelBehavior: FloatingLabelBehavior.never,
-                            labelText: 'Product Stock',
-                            labelStyle: TextStyle(
-                                color: Color.fromRGBO(143, 162, 193, 1),
-                                fontWeight: FontWeight.w500),
-                            border:
-                                OutlineInputBorder(borderSide: BorderSide.none),
-                            contentPadding: EdgeInsets.symmetric(
-                              vertical: 12.0,
-                              horizontal: 16.0,
-                            ),
-                          ),
-                          keyboardType: TextInputType.number,
-                        ),
-                      ),
-                      const SizedBox(height: 16.0),
-                      Container(
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(11.0),
-                            boxShadow: [
-                              BoxShadow(
-                                  color: Color.fromRGBO(132, 181, 255, 0.3),
-                                  spreadRadius: 2,
-                                  blurRadius: 10,
-                                  offset: Offset(0, 9))
-                            ]),
-                        child: TextFormField(
-                          controller: _priceController,
-                          decoration: InputDecoration(
-                            prefixIcon: Transform.scale(
-                              child: SvgPicture.asset(
-                                dollarIco,
-                                height: 5,
-                                color: Color.fromRGBO(143, 162, 193, 1),
+                              labelText: 'Product Name',
+                              labelStyle: TextStyle(
+                                  color: Color.fromRGBO(143, 162, 193, 1),
+                                  fontWeight: FontWeight.w500),
+                              border:
+                                  OutlineInputBorder(borderSide: BorderSide.none),
+                              contentPadding: EdgeInsets.symmetric(
+                                vertical: 12.0,
+                                horizontal: 16.0,
                               ),
-                              scale: 0.4,
-                            ),
-                            labelText: 'Product Price',
-                            labelStyle: TextStyle(
-                                color: Color.fromRGBO(143, 162, 193, 1),
-                                fontWeight: FontWeight.w500),
-                            floatingLabelBehavior: FloatingLabelBehavior.never,
-                            border:
-                                OutlineInputBorder(borderSide: BorderSide.none),
-                            contentPadding: EdgeInsets.symmetric(
-                              vertical: 12.0,
-                              horizontal: 16.0,
-                            ),
-                          ),
-                          keyboardType: TextInputType.number,
-                        ),
-                      ),
-                      const SizedBox(height: 16.0),
-                      Container(
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(11.0),
-                            boxShadow: [
-                              BoxShadow(
-                                  color: Color.fromRGBO(132, 181, 255, 0.3),
-                                  spreadRadius: 2,
-                                  blurRadius: 10,
-                                  offset: Offset(0, 9))
-                            ]),
-                        child: TextFormField(
-                          controller: _unitController,
-                          decoration: InputDecoration(
-                            prefixIcon: Transform.scale(
-                              child: SvgPicture.asset(
-                                barcodeIco,
-                                height: 5,
-                                color: Color.fromRGBO(143, 162, 193, 1),
-                              ),
-                              scale: 0.4,
-                            ),
-                            labelText: 'Product Unit',
-                            labelStyle: TextStyle(
-                                color: Color.fromRGBO(143, 162, 193, 1),
-                                fontWeight: FontWeight.w500),
-                            floatingLabelBehavior: FloatingLabelBehavior.never,
-                            border:
-                                OutlineInputBorder(borderSide: BorderSide.none),
-                            contentPadding: EdgeInsets.symmetric(
-                              vertical: 12.0,
-                              horizontal: 16.0,
                             ),
                           ),
                         ),
-                      ),
-                      const SizedBox(height: 16.0),
-                      Container(
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(11.0),
-                            boxShadow: [
-                              BoxShadow(
-                                  color: Color.fromRGBO(132, 181, 255, 0.3),
-                                  spreadRadius: 2,
-                                  blurRadius: 10,
-                                  offset: Offset(0, 9))
-                            ]),
-                        child: DropdownButtonFormField<String>(
-                          style: TextStyle(
-                              color: Color.fromRGBO(143, 162, 193, 1),
-                              fontWeight: FontWeight.w500),
-                          value: _selectedCategory,
-                          onChanged: (String? newValue) {
-                            setState(() {
-                              _selectedCategory = newValue!;
-                            });
-                          },
-                          items: <String>[
-                            'Soaps',
-                            'Cigs',
-                            'Coffee',
-                            'Snacks',
-                            'Drinks',
-                            'Noodles',
-                            'Kilos',
-                            'Others'
-                          ].map<DropdownMenuItem<String>>(
-                            (String value) {
-                              return DropdownMenuItem<String>(
-                                value: value,
-                                child: Text(value),
-                              );
+                        const SizedBox(height: 16.0),
+                        Container(
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(11.0),
+                              boxShadow: [
+                                BoxShadow(
+                                    color: Color.fromRGBO(132, 181, 255, 0.3),
+                                    spreadRadius: 2,
+                                    blurRadius: 10,
+                                    offset: Offset(0, 9))
+                              ]),
+                          child: TextFormField(
+                            controller: _stockController,
+                            decoration: InputDecoration(
+                              prefixIcon: Transform.scale(
+                                child: SvgPicture.asset(
+                                  cubesIco,
+                                  height: 5,
+                                  color: Color.fromRGBO(143, 162, 193, 1),
+                                ),
+                                scale: 0.4,
+                              ),
+                              floatingLabelBehavior: FloatingLabelBehavior.never,
+                              labelText: 'Product Stock',
+                              labelStyle: TextStyle(
+                                  color: Color.fromRGBO(143, 162, 193, 1),
+                                  fontWeight: FontWeight.w500),
+                              border:
+                                  OutlineInputBorder(borderSide: BorderSide.none),
+                              contentPadding: EdgeInsets.symmetric(
+                                vertical: 12.0,
+                                horizontal: 16.0,
+                              ),
+                            ),
+                            keyboardType: TextInputType.number,
+                          ),
+                        ),
+                        const SizedBox(height: 16.0),
+                        Container(
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(11.0),
+                              boxShadow: [
+                                BoxShadow(
+                                    color: Color.fromRGBO(132, 181, 255, 0.3),
+                                    spreadRadius: 2,
+                                    blurRadius: 10,
+                                    offset: Offset(0, 9))
+                              ]),
+                          child: TextFormField(
+                            controller: _priceController,
+                            decoration: InputDecoration(
+                              prefixIcon: Transform.scale(
+                                child: SvgPicture.asset(
+                                  dollarIco,
+                                  height: 5,
+                                  color: Color.fromRGBO(143, 162, 193, 1),
+                                ),
+                                scale: 0.4,
+                              ),
+                              labelText: 'Product Price',
+                              labelStyle: TextStyle(
+                                  color: Color.fromRGBO(143, 162, 193, 1),
+                                  fontWeight: FontWeight.w500),
+                              floatingLabelBehavior: FloatingLabelBehavior.never,
+                              border:
+                                  OutlineInputBorder(borderSide: BorderSide.none),
+                              contentPadding: EdgeInsets.symmetric(
+                                vertical: 12.0,
+                                horizontal: 16.0,
+                              ),
+                            ),
+                            keyboardType: TextInputType.number,
+                          ),
+                        ),
+                        const SizedBox(height: 16.0),
+                        Container(
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(11.0),
+                              boxShadow: [
+                                BoxShadow(
+                                    color: Color.fromRGBO(132, 181, 255, 0.3),
+                                    spreadRadius: 2,
+                                    blurRadius: 10,
+                                    offset: Offset(0, 9))
+                              ]),
+                          child: TextFormField(
+                            controller: _unitController,
+                            decoration: InputDecoration(
+                              prefixIcon: Transform.scale(
+                                child: SvgPicture.asset(
+                                  barcodeIco,
+                                  height: 5,
+                                  color: Color.fromRGBO(143, 162, 193, 1),
+                                ),
+                                scale: 0.4,
+                              ),
+                              labelText: 'Product Unit',
+                              labelStyle: TextStyle(
+                                  color: Color.fromRGBO(143, 162, 193, 1),
+                                  fontWeight: FontWeight.w500),
+                              floatingLabelBehavior: FloatingLabelBehavior.never,
+                              border:
+                                  OutlineInputBorder(borderSide: BorderSide.none),
+                              contentPadding: EdgeInsets.symmetric(
+                                vertical: 12.0,
+                                horizontal: 16.0,
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 16.0),
+                        Container(
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(11.0),
+                              boxShadow: [
+                                BoxShadow(
+                                    color: Color.fromRGBO(132, 181, 255, 0.3),
+                                    spreadRadius: 2,
+                                    blurRadius: 10,
+                                    offset: Offset(0, 9))
+                              ]),
+                          child: DropdownButtonFormField<String>(
+                            style: TextStyle(
+                                color: Color.fromRGBO(143, 162, 193, 1),
+                                fontWeight: FontWeight.w500),
+                            value: _selectedCategory,
+                            onChanged: (String? newValue) {
+                              setState(() {
+                                _selectedCategory = newValue!;
+                              });
                             },
-                          ).toList(),
-                          borderRadius: BorderRadius.circular(11),
-                          decoration: InputDecoration(
-                            floatingLabelBehavior: FloatingLabelBehavior.never,
-                            labelText: 'Product Category',
-                            border:
-                                OutlineInputBorder(borderSide: BorderSide.none),
-                            contentPadding: EdgeInsets.symmetric(
-                              vertical: 12.0,
-                              horizontal: 16.0,
+                            items: <String>[
+                              'Soaps',
+                              'Cigs',
+                              'Coffee',
+                              'Snacks',
+                              'Drinks',
+                              'Noodles',
+                              'Kilos',
+                              'Others'
+                            ].map<DropdownMenuItem<String>>(
+                              (String value) {
+                                return DropdownMenuItem<String>(
+                                  value: value,
+                                  child: Text(value),
+                                );
+                              },
+                            ).toList(),
+                            borderRadius: BorderRadius.circular(11),
+                            decoration: InputDecoration(
+                              floatingLabelBehavior: FloatingLabelBehavior.never,
+                              labelText: 'Product Category',
+                              border:
+                                  OutlineInputBorder(borderSide: BorderSide.none),
+                              contentPadding: EdgeInsets.symmetric(
+                                vertical: 12.0,
+                                horizontal: 16.0,
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                      const SizedBox(height: 16.0),
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(
-                                8), // Ubah nilai sesuai dengan tingkat kebulatan yang Anda inginkan
+                        const SizedBox(height: 35.0),
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(
+                                  8), // Ubah nilai sesuai dengan tingkat kebulatan yang Anda inginkan
+                            ),
+                            fixedSize: Size(500, 50),
+                            backgroundColor: Color.fromRGBO(52, 127, 235, 1),
                           ),
-                          fixedSize: Size(500, 50),
-                          backgroundColor: Color.fromRGBO(52, 127, 235, 1),
+                          onPressed: () => _addProduct(context),
+                          child: const Text('Add Product'),
                         ),
-                        onPressed: () => _addProduct(context),
-                        child: const Text('Add Product'),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
