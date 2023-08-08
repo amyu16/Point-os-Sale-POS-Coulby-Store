@@ -1,5 +1,5 @@
 import 'package:end/helpers/db_helper.dart';
-import 'package:end/widgets/product_list.dart';
+import 'package:end/pages/product_list_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';

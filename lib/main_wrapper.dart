@@ -1,9 +1,9 @@
 import 'package:end/controller/main_warapper_controller.dart';
 import 'package:end/pages/product_page.dart';
-import 'package:end/widgets/add_product.dart';
-import 'package:end/widgets/cart.dart';
+import 'package:end/pages/add_product_page.dart';
+import 'package:end/pages/cart_page.dart';
 import 'package:end/pages/order_page.dart';
-import 'package:end/widgets/product_list.dart';
+import 'package:end/pages/product_list_page.dart';
 import 'package:flutter/material.dart';
 import 'package:end/pages/report_page.dart';
 import 'package:get/get.dart';
